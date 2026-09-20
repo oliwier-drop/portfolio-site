@@ -1,5 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { ChevronRight } from "lucide-react";
+import { localizePath, type Locale } from "@/i18n/config";
+import { getUi } from "@/i18n/ui";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -17,24 +19,34 @@ interface Pagination {
 }
 
 interface BlogListProps {
+  locale: Locale;
   posts: Post[];
   allPostsCount: number;
   pagination: Pagination;
   pageSize: number;
 }
 
-export default function BlogList({ posts, allPostsCount, pagination, pageSize }: BlogListProps) {
+export default function BlogList({
+  locale,
+  posts,
+  allPostsCount,
+  pagination,
+  pageSize,
+}: BlogListProps) {
+  const ui = getUi(locale);
+  const blogBase = localizePath("/blog", locale);
+
   return (
     <section id="blog">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <h1 className="text-2xl font-semibold tracking-tight mb-4">
-          Blog{" "}
+          {ui.blogTitle}{" "}
           <span className="ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm">
-            {allPostsCount} posts
+            {ui.blogPosts(allPostsCount)}
           </span>
         </h1>
         <p className="text-sm text-muted-foreground mb-8">
-          My personal reflections about web development, life, and more.
+          {ui.blogDescription}
         </p>
       </BlurFade>
 
@@ -48,7 +60,7 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
                   <BlurFade delay={BLUR_FADE_DELAY * 3 + id * 0.05} key={post.id}>
                     <a
                       className="flex items-start gap-x-2 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      href={`/blog/${post.id}`}
+                      href={`${blogBase}/${post.id}`}
                     >
                       <span className="text-xs font-mono tabular-nums font-medium mt-[5px]">
                         {String(indexNumber).padStart(2, "0")}.
@@ -78,31 +90,31 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
             <BlurFade delay={BLUR_FADE_DELAY * 4}>
               <div className="flex gap-3 flex-row items-center justify-between mt-8">
                 <div className="text-sm text-muted-foreground">
-                  Page {pagination.page} of {pagination.totalPages}
+                  {ui.pageOf(pagination.page, pagination.totalPages)}
                 </div>
                 <div className="flex gap-2 sm:justify-end">
                   {pagination.hasPreviousPage ? (
                     <a
-                      href={`/blog?page=${pagination.page - 1}`}
+                      href={`${blogBase}?page=${pagination.page - 1}`}
                       className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      Previous
+                      {ui.previous}
                     </a>
                   ) : (
                     <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Previous
+                      {ui.previous}
                     </span>
                   )}
                   {pagination.hasNextPage ? (
                     <a
-                      href={`/blog?page=${pagination.page + 1}`}
+                      href={`${blogBase}?page=${pagination.page + 1}`}
                       className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      Next
+                      {ui.next}
                     </a>
                   ) : (
                     <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Next
+                      {ui.next}
                     </span>
                   )}
                 </div>
@@ -114,7 +126,7 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
           <div className="flex flex-col items-center justify-center py-12 px-4 border border-border rounded-xl">
             <p className="text-muted-foreground text-center">
-              No blog posts yet. Check back soon!
+              {ui.noPosts}
             </p>
           </div>
         </BlurFade>

@@ -1,23 +1,41 @@
 ---
 import "../styles/global.css";
-import { DATA } from "@/data/resume";
+import { getData } from "@/data/resume";
 import { CONFIG } from "@/data/config";
 import NavbarIsland from "@/components/NavbarIsland";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import {
+  defaultLocale,
+  isLocale,
+  localeHtmlLang,
+  localeOg,
+  type Locale,
+} from "@/i18n/config";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   canonicalURL?: string;
+  locale?: Locale;
 }
 
 const {
   title,
-  description = DATA.description,
+  description,
   image,
   canonicalURL = Astro.url.href,
+  locale: localeProp,
 } = Astro.props;
+
+const locale: Locale =
+  localeProp ??
+  (Astro.currentLocale && isLocale(Astro.currentLocale)
+    ? Astro.currentLocale
+    : defaultLocale);
+
+const DATA = getData(locale);
+const pageDescription = description ?? DATA.description;
 
 const pageTitle = title
   ? CONFIG.seo.titleTemplate.replace("%s", title).replace("%n", DATA.name)
@@ -33,7 +51,7 @@ const { baseFontSize } = CONFIG.typography;
 ---
 
 <html
-  lang={CONFIG.site.locale.split("_")[0]}
+  lang={localeHtmlLang[locale]}
   style={`font-size: ${baseFontSize}%;`}
 >
   <head>
@@ -112,8 +130,13 @@ const { baseFontSize } = CONFIG.typography;
 
     <!-- Primary meta -->
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="en" href={canonicalURL.replace(/\/(en|pl)(\/|$)/, "/en$2")} />
+    <link rel="alternate" hreflang="pl" href={canonicalURL.replace(/\/(en|pl)(\/|$)/, "/pl$2")} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL.replace(/\/(en|pl)(\/|$)/, "/en$2")} />
 
     <!-- Robots -->
     <meta name="robots" content={CONFIG.seo.robots} />
@@ -126,15 +149,15 @@ const { baseFontSize } = CONFIG.typography;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:site_name" content={DATA.name} />
-    <meta property="og:locale" content={CONFIG.site.locale} />
+    <meta property="og:locale" content={localeOg[locale]} />
     <meta property="og:image" content={ogImage} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content={CONFIG.seo.twitterCard} />
     <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="min-h-screen bg-background font-sans antialiased relative">
@@ -158,6 +181,6 @@ const { baseFontSize } = CONFIG.typography;
     </div>
 
     <!-- Navbar: ThemeProvider + TooltipProvider + Navbar all in one React island -->
-    <NavbarIsland client:load />
+    <NavbarIsland client:load locale={locale} />
   </body>
 </html>

@@ -2,10 +2,12 @@
 export const prerender = true;
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
-import { DATA } from "@/data/resume";
+import { getData } from "@/data/resume";
 import { formatDate } from "@/lib/utils";
 import { mdxComponents } from "@/mdx-components";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { locales, isLocale, localizePath, type Locale } from "@/i18n/config";
+import { getUi } from "@/i18n/ui";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -13,19 +15,29 @@ export async function getStaticPaths() {
     if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) return -1;
     return 1;
   });
-  return sortedPosts.map((post, index) => ({
-    params: { slug: post.id },
-    props: {
-      post,
-      previousPost: index > 0 ? sortedPosts[index - 1] : null,
-      nextPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
-    },
-  }));
+
+  return locales.flatMap((lang) =>
+    sortedPosts.map((post, index) => ({
+      params: { lang, slug: post.id },
+      props: {
+        post,
+        previousPost: index > 0 ? sortedPosts[index - 1] : null,
+        nextPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+      },
+    })),
+  );
 }
+
+const { lang, slug } = Astro.params;
+if (!lang || !isLocale(lang) || !slug) {
+  return Astro.redirect("/en/blog");
+}
+const locale = lang as Locale;
+const ui = getUi(locale);
+const DATA = getData(locale);
 
 const { post, previousPost, nextPost } = Astro.props;
 const { title, publishedAt, summary, image } = post.data;
-const slug = post.id;
 
 const { Content } = await render(post);
 
@@ -41,7 +53,7 @@ const jsonLd = JSON.stringify({
       ? image
       : `${DATA.url}${image}`
     : `${DATA.url}/og_image.png`,
-  url: `${DATA.url}/blog/${slug}`,
+  url: `${DATA.url}${localizePath(`/blog/${slug}`, locale)}`,
   author: {
     "@type": "Person",
     name: DATA.name,
@@ -50,23 +62,24 @@ const jsonLd = JSON.stringify({
 ---
 
 <Layout
+  locale={locale}
   title={title}
   description={summary}
   image={image}
-  canonicalURL={`${DATA.url}/blog/${slug}`}
+  canonicalURL={`${DATA.url}${localizePath(`/blog/${slug}`, locale)}`}
 >
   <section id="blog">
     <script is:inline type="application/ld+json" set:html={jsonLd} />
     <div class="flex justify-start gap-4 items-center">
       <a
-        href="/blog"
+        href={localizePath("/blog", locale)}
         class="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group"
-        aria-label="Back to Blog"
+        aria-label={ui.backToBlog}
       >
         <ChevronLeft
           className="size-3 group-hover:-translate-x-px transition-transform"
         />
-        Back to Blog
+        {ui.backToBlog}
       </a>
     </div>
     <div class="flex flex-col gap-4">
@@ -76,7 +89,7 @@ const jsonLd = JSON.stringify({
         {title}
       </h1>
       <p class="text-sm text-muted-foreground">
-        {formatDate(publishedAt)}
+        {formatDate(publishedAt, locale)}
       </p>
     </div>
     <div class="my-6 flex w-full items-center">
@@ -97,12 +110,12 @@ const jsonLd = JSON.stringify({
         {
           previousPost ? (
             <a
-              href={`/blog/${previousPost.id}`}
+              href={localizePath(`/blog/${previousPost.id}`, locale)}
               class="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors"
             >
               <span class="flex items-center gap-1 text-xs text-muted-foreground">
                 <ChevronLeft className="size-3" />
-                Previous
+                {ui.previous}
               </span>
               <span class="text-sm font-medium group-hover:text-foreground transition-colors whitespace-normal wrap-break-word">
                 {previousPost.data.title}
@@ -116,11 +129,11 @@ const jsonLd = JSON.stringify({
         {
           nextPost ? (
             <a
-              href={`/blog/${nextPost.id}`}
+              href={localizePath(`/blog/${nextPost.id}`, locale)}
               class="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors text-right"
             >
               <span class="flex items-center justify-end gap-1 text-xs text-muted-foreground">
-                Next
+                {ui.next}
                 <ChevronRight className="size-3" />
               </span>
               <span class="text-sm font-medium group-hover:text-foreground transition-colors whitespace-normal wrap-break-word">

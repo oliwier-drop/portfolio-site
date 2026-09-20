@@ -1,28 +1,20 @@
 import { Icons } from "@/components/icons";
-import { House, Library } from "lucide-react";
-import { ReactLight } from "@/components/ui/svgs/reactLight";
-import { NextjsIconDark } from "@/components/ui/svgs/nextjsIconDark";
-import { Typescript } from "@/components/ui/svgs/typescript";
-import { Nodejs } from "@/components/ui/svgs/nodejs";
-import { Python } from "@/components/ui/svgs/python";
-import { Golang } from "@/components/ui/svgs/golang";
-import { Postgresql } from "@/components/ui/svgs/postgresql";
-import { Docker } from "@/components/ui/svgs/docker";
-import { Kubernetes } from "@/components/ui/svgs/kubernetes";
-import { Astro } from "@/components/ui/svgs/astro";
+import { House } from "lucide-react";
+import type { Locale } from "@/i18n/config";
+import { localizeNavbar, plCopy } from "./resume.pl";
 
 export const DATA = {
-  name: "Alex Mercer - Software Engineer",
-  initials: "AM",
-  url: "https://alexmercer.dev",
-  location: "Austin, TX",
-  locationLink: "https://www.google.com/maps/place/austin+tx",
+  name: "Oliwier Drop - Network & Infrastructure Administrator",
+  initials: "OD",
+  url: "https://oliwierdrop.com",
+  location: "Poznań, Poland",
+  locationLink: "https://www.google.com/maps/place/poznań+poland",
   description:
-    "Full-stack engineer turned indie founder. I love building developer tools, fast UIs, and products people actually use.",
+    "Network & Infrastructure Administrator with a passion for building scalable and reliable systems.",
   summary:
-    "In early 2023, I left a senior engineering role to go all-in on building my own SaaS products. Before that, [I completed a double degree in computer science and business](/#education), [interned at companies like Stripe and Cloudflare](/#work), and [competed in 18+ hackathons](/#hackathons). I also spent a summer in San Francisco as part of a founder residency focused on shipping fast and finding early customers.",
-  avatarUrl: "/picofme.png",
-  ogImage: "/og_image.png",
+    "I am a Network & Infrastructure Administrator with a passion for building scalable and reliable systems. I have a strong background in network engineering and infrastructure management.",
+  avatarUrl: "/photos/picofme.png",
+  ogImage: "/portfolio-preview.png",
   sections: {
     about: { order: 1, enabled: true, heading: "About" },
     work: { order: 2, enabled: true, heading: "Work Experience", presentLabel: "Present" },
@@ -35,20 +27,20 @@ export const DATA = {
       text: "I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.",
     },
     hackathons: {
-      order: 7, enabled: true,
+      order: 7, enabled: false,
       label: "Hackathons",
       heading: "I like building things",
       text: "During my time in university, I attended {count}+ hackathons. People from around the country would come together and build incredible things in 2-3 days. It was eye-opening to see the endless possibilities brought to life by a group of motivated and passionate individuals.",
     },
     photos: {
-      order: 6, enabled: true,
+      order: 6, enabled: false,
       heading: "My Recent Travels",
     },
     contact: {
       order: 8, enabled: true,
       label: "Contact",
       heading: "Get in Touch",
-      text: "Want to chat? Just shoot me a dm with a direct question on twitter and I'll respond whenever I can. I will ignore all soliciting.",
+      text: "Want to chat? Just shoot me a DM with a direct question on LinkedIn and I'll respond whenever I can. I will ignore all soliciting.",
     },
   },
   photos: [
@@ -63,277 +55,160 @@ export const DATA = {
     { src: "/photos/photo9.jpg", alt: "Photo 9" },
   ],
   skills: [
-    { name: "Astro", icon: Astro },
-    { name: "React", icon: ReactLight },
-    { name: "Next.js", icon: NextjsIconDark },
-    { name: "Typescript", icon: Typescript },
-    { name: "Node.js", icon: Nodejs },
-    { name: "Python", icon: Python },
-    { name: "Go", icon: Golang },
-    { name: "Postgres", icon: Postgresql },
-    { name: "Docker", icon: Docker },
-    { name: "Kubernetes", icon: Kubernetes },
+    { name: "Cisco", slug: "cisco" },
+    {
+      name: "Extreme Networks",
+      iconUrl: "https://www.google.com/s2/favicons?domain=extremenetworks.com&sz=64",
+    },
+    { name: "Ubiquiti", slug: "ubiquiti" },
+    { name: "Palo Alto Networks", slug: "paloaltonetworks" },
+    {
+      name: "Wazuh",
+      iconUrl: "https://www.google.com/s2/favicons?domain=wazuh.com&sz=64",
+    },
+    {
+      name: "Ansible",
+      iconUrl: "https://www.google.com/s2/favicons?domain=docs.ansible.com&sz=64",
+    },
+    { name: "Debian", slug: "debian" },
+    { name: "Ubuntu", slug: "ubuntu" },
+    { 
+      name: "Synology", 
+      iconUrl: "https://www.google.com/s2/favicons?domain=synology.com&sz=64",
+    },
+    {
+      name: "Windows Server",
+      iconUrl: "https://www.google.com/s2/favicons?domain=microsoft.com&sz=64",
+    },
+    {
+      name: "Windows 11",
+      iconUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_Windows_11.webp?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    },
   ],
   navbar: [
     { href: "/", icon: House, label: "Home" },
-    { href: "/blog", icon: Library, label: "Blog" },
-  ],
+  ] as const,
   contact: {
-    email: "alex@alexmercer.dev",
-    tel: "+1 512 000 0000",
+    email: "oliwier.drop11@outlook.com ",
+    tel: "+48 505 235 431",
     social: {
       GitHub: {
         name: "GitHub",
-        url: "https://github.com",
+        url: "https://github.com/oliwier-drop",
         icon: Icons.github,
         navbar: true,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://linkedin.com",
+        url: "https://www.linkedin.com/in/oliwier-drop/",
         icon: Icons.linkedin,
         navbar: true,
-      },
-      X: {
-        name: "X",
-        url: "https://x.com",
-        icon: Icons.x,
-        navbar: true,
-      },
-      Youtube: {
-        name: "Youtube",
-        url: "https://youtube.com",
-        icon: Icons.youtube,
-        navbar: true,
-      },
-      email: {
-        name: "Send Email",
-        url: "mailto:alex@alexmercer.dev",
-        icon: Icons.email,
-        navbar: false,
       },
     },
   },
 
   work: [
     {
-      company: "Meridian Labs",
-      href: "https://meridian.so",
-      badges: ["Founder"],
-      location: "Austin, TX",
-      title: "Co-founder & Engineer",
-      logoUrl: "https://avatar.vercel.sh/meridian-labs?size=40",
-      start: "January 2023",
+      company: "HellermannTyton Poland",
+      href: "https://hellermanntyton.pl",
+      badges: ["Full-time"],
+      location: "Słupca, Poland",
+      title: "IT Infrastructure Specialist",
+      logoUrl: "/photos/ht_logo.png",
+      start: "November 2026",
       end: undefined,
       description:
-        "Building a suite of developer productivity tools focused on local-first architecture and offline sync. Grew to 1,200 paying customers within the first year. Responsible for the full stack - product, engineering, and growth.",
+        "Maintaining and developing IT infrastructure in a production environment. Managing Cisco, Extreme Networks and Ubiquiti networks, administering VMware ESXi, Proxmox and Hyper-V, Windows Server, print management, monitoring and RMM systems, access control deployments, and user support.",
     },
     {
-      company: "Stripe",
-      href: "https://stripe.com",
-      badges: [],
-      location: "San Francisco, CA",
-      title: "Software Engineer Intern",
-      logoUrl: "https://www.google.com/s2/favicons?domain=stripe.com&sz=128",
-      start: "May 2022",
-      end: "August 2022",
+      company: "Corpotech",
+      href: "https://corpotech.com.pl",
+      badges: ["Freelance"],
+      location: "Słupca, Poland",
+      title: "Network & Infrastructure Consultant",
+      logoUrl: "https://corpotech.com.pl/favicon.svg",
+      logoScale: 0.8,
+      start: "November 2026",
+      end: undefined,
       description:
-        "Worked on the Payments Infrastructure team. Built an internal load-testing framework in Go that reduced regression testing time by 60%. Contributed to the migration of legacy billing logic to a new event-driven architecture using Kafka.",
+        "Supporting clients on network and infrastructure implementation projects — designing solutions, planning deployments, and rolling them out in production environments.",
     },
     {
-      company: "Cloudflare",
-      href: "https://cloudflare.com",
-      badges: [],
-      location: "Remote",
-      title: "Software Engineer Intern",
-      logoUrl: "https://www.google.com/s2/favicons?domain=cloudflare.com&sz=128",
-      start: "September 2021",
-      end: "December 2021",
+      company: "Corpotech",
+      href: "https://corpotech.com.pl",
+      badges: ["Full-time"],
+      location: "Słupca, Poland",
+      title: "IT Specialist",
+      logoUrl: "https://corpotech.com.pl/favicon.svg",
+      logoScale: 0.8,
+      start: "September 2024",
+      end: "November 2026",
       description:
-        "Joined the Workers team during a co-op term. Implemented a new dashboard UI for monitoring Worker invocation metrics using React and D3. Added support for custom error boundaries in the Workers runtime sandbox.",
-    },
-    {
-      company: "Datadog",
-      href: "https://datadoghq.com",
-      badges: [],
-      location: "New York, NY",
-      title: "Software Engineer Intern",
-      logoUrl: "https://www.google.com/s2/favicons?domain=datadoghq.com&sz=128",
-      start: "January 2021",
-      end: "April 2021",
-      description:
-        "Built new alert correlation features in the Incidents product using Python and React. Improved p99 query latency on the metrics explorer by 40% through query plan optimizations in PostgreSQL.",
-    },
-    {
-      company: "Benchling",
-      href: "https://benchling.com",
-      badges: [],
-      location: "San Francisco, CA",
-      title: "Software Engineer Intern",
-      logoUrl: "https://www.google.com/s2/favicons?domain=benchling.com&sz=128",
-      start: "May 2020",
-      end: "August 2020",
-      description:
-        "Worked on the scientific data platform team. Implemented a bulk import pipeline for lab instrument data using TypeScript and AWS Lambda, reducing manual data entry time for research teams by over 80%.",
-    },
-    {
-      company: "Relay Labs",
-      href: "https://relay.app",
-      badges: [],
-      location: "Vancouver, BC",
-      title: "Software Engineer Intern",
-      logoUrl: "https://www.google.com/s2/favicons?domain=relay.app&sz=128",
-      start: "September 2019",
-      end: "December 2019",
-      description:
-        "Early-stage startup building workflow automation tools. Shipped core integrations with Slack, Notion, and GitHub. Designed the initial webhook delivery system in Node.js that handled over 500k events per day at peak.",
+        "Administering network and IT infrastructure for clients — switching, VLANs, servers and virtualization. Also building websites and custom software solutions tailored to client needs.",
     },
   ],
   education: [
     {
-      school: "Founder Fellowship SF",
-      href: "https://foundersfellowship.io",
-      degree: "Cohort 4 - Founder in Residence",
-      logoUrl: "https://avatar.vercel.sh/founder-fellowship?size=40",
-      start: "2023",
-      end: "2023",
+      school: "Adam Mickiewicz University in Poznań",
+      href: "https://amu.edu.pl",
+      degree: ["Bachelor's degree"],
+      major: "Journalism and Communication",
+      logoScale: 0.9,
+      logoUrl: "https://amu.edu.pl/__data/assets/file/0015/6603/apple-touch-icon.png?v=0.1.1",
+      start: "2024",
+      end: "2027",
     },
     {
-      school: "University of British Columbia",
-      href: "https://ubc.ca",
-      degree: "Bachelor of Science, Computer Science",
-      logoUrl: "https://www.google.com/s2/favicons?domain=ubc.ca&sz=128",
-      start: "2018",
+      school: "General Education and Vocational High School in Zagórów",
+      href: "https://zszagorow.eu",
+      degree: ["Technician Diploma"],
+      major: "Information and Telecommunications",
+      logoUrl: "https://www.google.com/s2/favicons?domain=zszagorow.eu&sz=128",
+      start: "2019",
       end: "2023",
-    },
-    {
-      school: "Simon Fraser University",
-      href: "https://sfu.ca",
-      degree: "Bachelor of Business Administration",
-      logoUrl: "https://www.google.com/s2/favicons?domain=sfu.ca&sz=128",
-      start: "2018",
-      end: "2023",
-    },
-    {
-      school: "International Baccalaureate",
-      href: "https://ibo.org",
-      degree: "IB Diploma",
-      logoUrl: "https://www.google.com/s2/favicons?domain=ibo.org&sz=128",
-      start: "2014",
-      end: "2018",
     },
   ],
   projects: [
     {
-      title: "Stackwise",
-      href: "https://stackwise.dev",
-      dates: "March 2024 - Present",
+      title: "Corporate Network Migration",
+      href: "",
+      dates: "September 2025 - Present",
       active: true,
       description:
-        "Built an AI-powered code review tool that integrates with GitHub PRs and provides context-aware feedback based on your team's codebase conventions. Used by 300+ engineering teams.",
+        "Migrated a company network from a legacy address pool to a new, more granular IP scheme. Redesigned subnetting for clearer segmentation and implemented updated firewall security policies across the infrastructure.",
       technologies: [
-        "Next.js",
-        "TypeScript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Stripe",
-        "Shadcn UI",
-        "OpenAI API",
+        "Extreme Networks",
+        "Ubiquiti",
+        "Palo Alto Networks",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://stackwise.dev",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "/example-website.webp",
+      links: [],
+      image: "/photos/cisco-scheme.png",
+      imageScale: 1,
       video: "",
     },
     {
-      title: "Logport",
-      href: "https://logport.io",
-      dates: "October 2023 - February 2024",
+      title: "Marpol",
+      href: "https://marpol-opakowania.pl",
+      dates: "February 2026",
       active: true,
       description:
-        "Open-source structured logging dashboard for Node.js and Python services. Ingest logs via a lightweight SDK, query them with a SQL-like syntax, and set up alerts in minutes.",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "ClickHouse",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Cloudflare Workers",
-      ],
+        "A simple landing page for a local cardboard packaging manufacturer. Clean, industrial look with product-focused messaging — built for a regional packaging company.",
+      technologies: ["PHP", "Laravel", "TailwindCSS"],
       links: [
         {
           type: "Website",
-          href: "https://logport.io",
+          href: "https://marpol-opakowania.pl",
           icon: <Icons.globe className="size-3" />,
         },
         {
           type: "Source",
-          href: "https://github.com/alexmercer-dev/logport",
+          href: "https://github.com/oliwier-drop/marpol",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
-      video: "https://cdn.magicui.design/bento-grid.mp4",
-    },
-    {
-      title: "Formbase",
-      href: "https://formbase.dev",
-      dates: "June 2023 - September 2023",
-      active: true,
-      description:
-        "A headless form backend that handles submissions, spam filtering, file uploads, and email notifications - no server required. Drop in one script tag and you're done.",
-      technologies: [
-        "Astro",
-        "TypeScript",
-        "Cloudflare Workers",
-        "TailwindCSS",
-        "Stripe",
-        "Resend",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://formbase.dev",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/alexmercer-dev/formbase",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "/example-website.png",
+      image: "/photos/marpol-mockup.png",
+      imageScale: 1,
       video: "",
-    },
-    {
-      title: "Patchwork",
-      href: "https://patchwork.run",
-      dates: "February 2023 - May 2023",
-      active: false,
-      description:
-        "A visual diff tool for design tokens and Tailwind config changes. Connect it to your repo and get a live preview of how a config change affects every component in your design system.",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Vercel",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://patchwork.run",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "https://cdn.llm.report/openai-demo.mp4",
     },
   ],
   hackathons: [
@@ -457,4 +332,101 @@ export const DATA = {
       links: [],
     },
   ],
-} as const;
+};
+
+export type ResumeData = typeof DATA;
+
+/** Localized resume view. Edit English copy in `DATA` above; Polish in `resume.pl.ts`. */
+export function getData(locale: Locale): ResumeData {
+  const navbar = localizeNavbar(
+    locale,
+    DATA.navbar as unknown as { href: string; label: string; icon: unknown }[],
+    locale === "pl" ? plCopy.navbar : undefined,
+  ) as unknown as typeof DATA.navbar;
+
+  if (locale !== "pl") {
+    return {
+      ...DATA,
+      navbar,
+    };
+  }
+
+  return {
+    ...DATA,
+    name: plCopy.name,
+    description: plCopy.description,
+    summary: plCopy.summary,
+    sections: {
+      about: { ...DATA.sections.about, ...plCopy.sections.about },
+      work: { ...DATA.sections.work, ...plCopy.sections.work },
+      education: { ...DATA.sections.education, ...plCopy.sections.education },
+      skills: { ...DATA.sections.skills, ...plCopy.sections.skills },
+      projects: { ...DATA.sections.projects, ...plCopy.sections.projects },
+      hackathons: { ...DATA.sections.hackathons, ...plCopy.sections.hackathons },
+      photos: { ...DATA.sections.photos, ...plCopy.sections.photos },
+      contact: { ...DATA.sections.contact, ...plCopy.sections.contact },
+    },
+    navbar,
+    contact: DATA.contact,
+    work: DATA.work.map((item, i) => {
+      const pl = plCopy.work[i];
+      return {
+        ...item,
+        ...(pl ?? {}),
+        badges: pl?.badges ? [...pl.badges] : [...item.badges],
+        title: pl?.title ?? item.title,
+        location: pl?.location ?? item.location,
+        start: pl?.start ?? item.start,
+        end: pl && "end" in pl ? pl.end : item.end,
+        description: pl?.description ?? item.description,
+      };
+    }),
+    education: DATA.education.map((item, i) => {
+      const pl = plCopy.education[i];
+      if (!pl) return item;
+      return {
+        ...item,
+        school: pl.school ?? item.school,
+        degree: pl.degree ? [...pl.degree] : [...item.degree],
+        major: pl.major ?? item.major,
+      };
+    }),
+    projects: DATA.projects.map((item, i) => {
+      const pl = plCopy.projects[i];
+      if (!pl) return item;
+      return {
+        ...item,
+        ...("title" in pl && pl.title ? { title: pl.title } : {}),
+        dates: pl.dates,
+        description: pl.description,
+        links: item.links.map((link, j) => ({
+          ...link,
+          type: pl.links[j]?.type ?? link.type,
+        })),
+      };
+    }),
+    hackathons: DATA.hackathons.map((item, i) => {
+      const pl = plCopy.hackathons[i] as
+        | {
+            dates: string;
+            location: string;
+            description: string;
+            win?: string;
+            links?: readonly { title: string }[];
+          }
+        | undefined;
+      if (!pl) return item;
+      return {
+        ...item,
+        dates: pl.dates,
+        location: pl.location,
+        description: pl.description,
+        ...(pl.win ? { win: pl.win } : {}),
+        links: item.links.map((link, j) => ({
+          ...link,
+          title: pl.links?.[j]?.title ?? ("title" in link ? link.title : ""),
+        })),
+      };
+    }),
+  } as unknown as ResumeData;
+}

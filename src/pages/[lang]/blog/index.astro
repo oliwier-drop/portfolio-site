@@ -3,8 +3,22 @@ import Layout from "@/layouts/Layout.astro";
 import BlogList from "@/components/BlogList";
 import { getCollection } from "astro:content";
 import { paginate, normalizePage } from "@/lib/pagination";
+import { locales, isLocale, type Locale } from "@/i18n/config";
+import { getUi } from "@/i18n/ui";
+import { CONFIG } from "@/data/config";
 
-const PAGE_SIZE = 5;
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!lang || !isLocale(lang)) {
+  return Astro.redirect("/en/blog");
+}
+const locale = lang as Locale;
+const ui = getUi(locale);
+
+const PAGE_SIZE = CONFIG.blog.postsPerPage;
 
 const allPosts = await getCollection("blog");
 const sortedPosts = [...allPosts].sort((a, b) => {
@@ -27,9 +41,14 @@ const posts = paginatedPosts.map((post) => ({
 }));
 ---
 
-<Layout title="Blog" description="Thoughts on software development, life, and more.">
+<Layout
+  locale={locale}
+  title={ui.blogTitle}
+  description={ui.blogDescription}
+>
   <BlogList
     client:load
+    locale={locale}
     posts={posts}
     allPostsCount={sortedPosts.length}
     pagination={pagination}
