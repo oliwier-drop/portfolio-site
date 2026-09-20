@@ -2,19 +2,18 @@
 export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import HomePage from "@/components/HomePage";
-import { locales, isLocale, type Locale } from "@/i18n/config";
+import { localizePath } from "@/i18n/config";
 
 export function getStaticPaths() {
-  return locales.map((lang) => ({ params: { lang } }));
+  return [{ params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-if (!lang || !isLocale(lang)) {
-  return Astro.redirect("/en");
+if (lang !== "en") {
+  return Astro.redirect(localizePath("/", "pl"));
 }
-const locale = lang as Locale;
 ---
 
-<Layout locale={locale}>
-  <HomePage client:only="react" locale={locale} />
+<Layout locale="en">
+  <HomePage client:only="react" locale="en" />
 </Layout>

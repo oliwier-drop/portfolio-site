@@ -1,3 +1,9 @@
 ---
-return Astro.redirect("/en");
+export const prerender = true;
+import Layout from "../layouts/Layout.astro";
+import HomePage from "@/components/HomePage";
 ---
+
+<Layout locale="pl">
+  <HomePage client:only="react" locale="pl" />
+</Layout>

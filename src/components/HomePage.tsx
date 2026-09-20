@@ -58,44 +58,44 @@ function HomePageContent() {
                   href={education.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-x-3 justify-between group"
+                  className="flex items-start gap-x-3 group"
                 >
-                  <div className="flex items-center gap-x-3 flex-1 min-w-0">
-                    {education.logoUrl ? (
-                      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden flex-none flex items-center justify-center bg-background">
-                        <img
-                          src={education.logoUrl}
-                          alt={education.school}
-                          className="object-contain"
-                          style={{
-                            width: `${("logoScale" in education ? education.logoScale ?? 1 : 1) * 100}%`,
-                            height: `${("logoScale" in education ? education.logoScale ?? 1 : 1) * 100}%`,
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
-                    )}
-                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                      <div className="font-semibold leading-none flex items-center gap-2">
+                  {education.logoUrl ? (
+                    <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden flex-none flex items-center justify-center bg-background">
+                      <img
+                        src={education.logoUrl}
+                        alt={education.school}
+                        className="object-contain"
+                        style={{
+                          width: `${("logoScale" in education ? education.logoScale ?? 1 : 1) * 100}%`,
+                          height: `${("logoScale" in education ? education.logoScale ?? 1 : 1) * 100}%`,
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
+                  )}
+                  <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-x-3">
+                      <div className="font-semibold leading-snug flex items-center gap-2 text-pretty">
                         {education.school}
-                        <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden />
+                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden />
                       </div>
-                      <div className="font-sans text-sm text-muted-foreground flex items-center gap-2 flex-wrap">
-                        <span>{education.major}</span>
-                        {education.degree.map((item) => (
-                          <span
-                            key={item}
-                            className="inline-flex items-center rounded-md border border-border px-1.5 h-5 text-[10px] font-medium text-foreground"
-                          >
-                            {item}
-                          </span>
-                        ))}
+                      <div className="text-xs tabular-nums text-muted-foreground sm:text-right sm:shrink-0 sm:whitespace-nowrap">
+                        <span>{education.start} - {education.end}</span>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
-                    <span>{education.start} - {education.end}</span>
+                    <div className="font-sans text-sm text-muted-foreground flex items-center gap-2 flex-wrap">
+                      <span>{education.major}</span>
+                      {education.degree.map((item) => (
+                        <span
+                          key={item}
+                          className="inline-flex items-center rounded-md border border-border px-1.5 h-5 text-[10px] font-medium text-foreground"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </a>
               </BlurFade>

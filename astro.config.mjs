@@ -27,10 +27,10 @@ export default defineConfig({
   adapter: cloudflare(),
 
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'pl',
     locales: ['en', 'pl'],
     routing: {
-      prefixDefaultLocale: true,
+      prefixDefaultLocale: false,
     },
   },
 

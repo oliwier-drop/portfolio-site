@@ -121,9 +121,9 @@ export default function WorkSection() {
                       key={`${work.title}-${work.start}`}
                       className="grid gap-1"
                     >
-                      <div className="flex items-center justify-between gap-x-3">
-                        <div className="font-sans text-sm text-muted-foreground min-w-0 flex items-center gap-2">
-                          <span className="shrink-0">{work.title}</span>
+                      <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-x-3">
+                        <div className="font-sans text-sm text-muted-foreground min-w-0 flex flex-wrap items-center gap-2">
+                          <span className="text-pretty">{work.title}</span>
                           {work.badges.length > 0 && (
                             <div className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-200 ease-out group-data-[state=open]:grid-cols-[1fr]">
                               <div className="overflow-hidden min-w-0">
@@ -142,7 +142,7 @@ export default function WorkSection() {
                             </div>
                           )}
                         </div>
-                        <div className="text-xs tabular-nums text-muted-foreground text-right flex-none">
+                        <div className="text-xs tabular-nums text-muted-foreground sm:text-right sm:shrink-0 sm:whitespace-nowrap">
                           {formatRange(work.start, work.end, presentLabel)}
                         </div>
                       </div>
