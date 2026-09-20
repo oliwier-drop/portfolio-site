@@ -83,6 +83,20 @@ export const plCopy = {
       links: [],
     },
     {
+      title: "Wdrożenie Wazuh i integracja z ExtremeXOS",
+      dates: "lipiec 2026",
+      description:
+        "Wdrożenie Wazuh na zakładzie HellermannTyton oraz własne dekodery i reguły korelacji dla syslogów Extreme Networks Switch Engine — lepsza widoczność zdarzeń auth, portów, pętli i platformy.",
+      links: [{ type: "Kod" }],
+    },
+    {
+      title: "HT Kiosk",
+      dates: "maj 2026",
+      description:
+        "Nakładka kioskowa na zakład HellermannTyton. Aplikacja Electron z wbudowaną klawiaturą ekranową oraz automatycznym kasowaniem sesji na wspólnych terminalach.",
+      links: [{ type: "Kod" }],
+    },
+    {
       dates: "luty 2026",
       description:
         "Prosty landing page dla lokalnej firmy produkującej opakowania kartonowe. Czysty, industrialny wygląd z naciskiem na ofertę produktową — przygotowany dla regionalnego producenta opakowań.",

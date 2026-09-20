@@ -8,7 +8,7 @@ Personal portfolio of a **Network & Infrastructure Administrator** — built wit
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
 
-[**oliwierdrop.com**](https://oliwierdrop.com)
+[**oliwierdrop.com**](https://oliwierdrop.pl)
 
 ![Portfolio preview](./public/portfolio-preview.png)
 

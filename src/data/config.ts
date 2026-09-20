@@ -3,9 +3,9 @@ export const CONFIG = {
   // Site Settings
   // ---------------------------------------------------------------------------
   site: {
-    url: "https://oliwierdrop.com",
-    locale: "en_US",
-    twitterHandle: "@alexmercer_dev",
+    url: "https://oliwierdrop.pl",
+    locale: "pl_PL",
+    twitterHandle: "@oliwierdrop",
   },
 
   // ---------------------------------------------------------------------------

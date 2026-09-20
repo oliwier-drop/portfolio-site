@@ -187,6 +187,43 @@ export const DATA = {
       video: "",
     },
     {
+      title: "Wazuh Deployment and ExtremeXOS Integration",
+      href: "https://github.com/oliwier-drop/wazuh-extremexos-integration",
+      dates: "July 2026",
+      active: true,
+      description:
+        "Deployed Wazuh at the HellermannTyton plant and wrote custom decoders and correlation rules for Extreme Networks Switch Engine syslog — improving visibility into auth, ports, loops, and platform events.",
+      technologies: ["Wazuh", "Extreme Networks", "Syslog", "PCRE2"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/oliwier-drop/wazuh-extremexos-integration",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/photos/wazuh-header-image.jpg",
+      video: "",
+    },
+    {
+      title: "HT Employee Kiosk",
+      href: "https://github.com/oliwier-drop/ht-employee-kiosk",
+      dates: "May 2026",
+      active: true,
+      description:
+        "A kiosk browser overlay for the HellermannTyton plant floor. Built with Electron — includes an on-screen keyboard and automatic session wipe for shared terminals.",
+      technologies: ["Electron", "JavaScript", "Node.js"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/oliwier-drop/ht-employee-kiosk",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/photos/ht-kiosk-photo.png",
+      imageScale: 1,
+      video: "",
+    },
+    {
       title: "Marpol",
       href: "https://marpol-opakowania.pl",
       dates: "February 2026",
@@ -202,7 +239,7 @@ export const DATA = {
         },
         {
           type: "Source",
-          href: "https://github.com/oliwier-drop/marpol",
+          href: "https://github.com/oliwier-drop/marpol-site",
           icon: <Icons.github className="size-3" />,
         },
       ],

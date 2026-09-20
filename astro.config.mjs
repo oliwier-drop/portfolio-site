@@ -36,6 +36,17 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    // workerd has no `module` global — prebundle React CJS for SSR/dev
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        'react-dom/server',
+        'react-dom/server.edge',
+      ],
+    },
   },
 
   integrations: [
