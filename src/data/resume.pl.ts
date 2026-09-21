@@ -76,13 +76,6 @@ export const plCopy = {
   ],
   projects: [
     {
-      title: "Migracja sieci firmowej",
-      dates: "Wrzesień 2025 - obecnie",
-      description:
-        "Migracja sieci firmowej ze starej puli adresowej do nowej, bardziej granularnej. Przeprojektowanie podsieci pod lepszą segmentację oraz wdrożenie nowych polityk bezpieczeństwa na firewallach.",
-      links: [],
-    },
-    {
       title: "Wdrożenie Wazuh i integracja z ExtremeXOS",
       dates: "lipiec 2026",
       description:

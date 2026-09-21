@@ -170,23 +170,6 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "Corporate Network Migration",
-      href: "",
-      dates: "September 2025 - Present",
-      active: true,
-      description:
-        "Migrated a company network from a legacy address pool to a new, more granular IP scheme. Redesigned subnetting for clearer segmentation and implemented updated firewall security policies across the infrastructure.",
-      technologies: [
-        "Extreme Networks",
-        "Ubiquiti",
-        "Palo Alto Networks",
-      ],
-      links: [],
-      image: "/photos/cisco-scheme.png",
-      imageScale: 1,
-      video: "",
-    },
-    {
       title: "Wazuh Deployment and ExtremeXOS Integration",
       href: "https://github.com/oliwier-drop/wazuh-extremexos-integration",
       dates: "July 2026",
