@@ -32,7 +32,7 @@ function LogoImage({
   }
 
   return (
-    <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden flex-none flex items-center justify-center bg-background">
+    <div className="size-8 md:size-10 p-1 border border-border rounded-full shadow ring-2 ring-border overflow-hidden flex-none flex items-center justify-center bg-white dark:border-white/50 dark:ring-white/40">
       <img
         src={src}
         alt={alt}
