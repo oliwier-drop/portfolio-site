@@ -83,10 +83,10 @@ export const plCopy = {
       links: [{ type: "Kod" }],
     },
     {
-      title: "HT Kiosk",
+      title: "Electron Kiosk",
       dates: "maj 2026",
       description:
-        "Nakładka kioskowa na zakład HellermannTyton. Aplikacja Electron z wbudowaną klawiaturą ekranową oraz automatycznym kasowaniem sesji na wspólnych terminalach.",
+        "Nakładka kioskowa na wspólne terminale produkcyjne. Aplikacja Electron z wbudowaną klawiaturą ekranową oraz automatycznym kasowaniem sesji.",
       links: [{ type: "Kod" }],
     },
     {

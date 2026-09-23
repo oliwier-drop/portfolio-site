@@ -188,17 +188,17 @@ export const DATA = {
       video: "",
     },
     {
-      title: "HT Employee Kiosk",
-      href: "https://github.com/oliwier-drop/ht-employee-kiosk",
+      title: "Electron Kiosk",
+      href: "https://github.com/oliwier-drop/electron-kiosk",
       dates: "May 2026",
       active: true,
       description:
-        "A kiosk browser overlay for the HellermannTyton plant floor. Built with Electron — includes an on-screen keyboard and automatic session wipe for shared terminals.",
+        "A kiosk browser overlay for shared plant-floor terminals. Built with Electron — includes an on-screen keyboard and automatic session wipe.",
       technologies: ["Electron", "JavaScript", "Node.js"],
       links: [
         {
           type: "Source",
-          href: "https://github.com/oliwier-drop/ht-employee-kiosk",
+          href: "https://github.com/oliwier-drop/electron-kiosk",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -219,11 +219,6 @@ export const DATA = {
           type: "Website",
           href: "https://marpol-opakowania.pl",
           icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/oliwier-drop/marpol-site",
-          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "/photos/marpol-mockup.png",
